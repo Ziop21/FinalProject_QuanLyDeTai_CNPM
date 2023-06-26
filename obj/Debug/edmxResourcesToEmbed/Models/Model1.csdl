@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyDeTaiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="SinhVien" Relationship="Self.fk_accountStudent" FromRole="AspNetUsers" ToRole="SinhVien" />
+    <NavigationProperty Name="GiangVien" Relationship="Self.fk_accountTeacher" FromRole="AspNetUsers" ToRole="GiangVien" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="ChuyenNganh">
+    <Key>
+      <PropertyRef Name="maChuyenNganh" />
+    </Key>
+    <Property Name="maChuyenNganh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenChuyenNganh" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="truongBoMon" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LoaiDeTais" Relationship="Self.fk_loaiDeTai_chuyenNganh" FromRole="ChuyenNganh" ToRole="LoaiDeTai" />
+    <NavigationProperty Name="SinhViens" Relationship="Self.fk_sinhVien_chuyenNganh" FromRole="ChuyenNganh" ToRole="SinhVien" />
+    <NavigationProperty Name="GiangVien" Relationship="Self.fk_truongBoMon" FromRole="ChuyenNganh" ToRole="GiangVien" />
+    <NavigationProperty Name="LoaiDeTais1" Relationship="Self.LoaiDeTaiChuyenNganh" FromRole="ChuyenNganh" ToRole="LoaiDeTai" />
+  </EntityType>
+  <EntityType Name="DeTai">
+    <Key>
+      <PropertyRef Name="maDeTai" />
+    </Key>
+    <Property Name="maDeTai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenDeTai" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="mucTieu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="yeuCau" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="sanPham" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="chuThich" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="soLuongSinhVienToiDa" Type="Int32" />
+    <Property Name="duocDangKyKhacChuyenNganh" Type="Boolean" />
+    <Property Name="nienKhoa" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="loaiDeTai" Type="Int32" />
+    <Property Name="diem" Type="Double" />
+    <Property Name="truongNhom" Type="Int32" />
+    <Property Name="gvHuongDan" Type="Int32" />
+    <NavigationProperty Name="LoaiDeTai1" Relationship="Self.FK_DeTai_LoaiDeTai_loaiDeTai" FromRole="DeTai" ToRole="LoaiDeTai" />
+    <NavigationProperty Name="HoiDongChams" Relationship="Self.FK_hoiDongCham_DeTai" FromRole="DeTai" ToRole="HoiDongCham" />
+    <NavigationProperty Name="Nhoms" Relationship="Self.fk_nhomDeTai" FromRole="DeTai" ToRole="Nhom" />
+    <NavigationProperty Name="GiangVienPhanBiens" Relationship="Self.FK_PhanBien_DeTai" FromRole="DeTai" ToRole="GiangVienPhanBien" />
+  </EntityType>
+  <EntityType Name="GiangVien">
+    <Key>
+      <PropertyRef Name="account_ID" />
+    </Key>
+    <Property Name="account_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tenGiangVien" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="loaiGiangVien" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="maGiangVien" Type="Int32" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.fk_accountTeacher" FromRole="GiangVien" ToRole="AspNetUsers" />
+    <NavigationProperty Name="ChuyenNganhs" Relationship="Self.fk_truongBoMon" FromRole="GiangVien" ToRole="ChuyenNganh" />
+  </EntityType>
+  <EntityType Name="GiangVienPhanBien">
+    <Key>
+      <PropertyRef Name="maPhanBien" />
+    </Key>
+    <Property Name="maPhanBien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="maGiangVien" Type="Int32" />
+    <Property Name="maDeTai" Type="Int32" />
+    <NavigationProperty Name="DeTai" Relationship="Self.FK_PhanBien_DeTai" FromRole="GiangVienPhanBien" ToRole="DeTai" />
+  </EntityType>
+  <EntityType Name="HoiDongCham">
+    <Key>
+      <PropertyRef Name="maHoiDong" />
+    </Key>
+    <Property Name="maHoiDong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="maDeTai" Type="Int32" />
+    <Property Name="soLuongGV" Type="Int32" />
+    <NavigationProperty Name="DeTai" Relationship="Self.FK_hoiDongCham_DeTai" FromRole="HoiDongCham" ToRole="DeTai" />
+  </EntityType>
+  <EntityType Name="LoaiDeTai">
+    <Key>
+      <PropertyRef Name="maLoaiDeTai" />
+    </Key>
+    <Property Name="maLoaiDeTai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenLoaiDeTai" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="nienKhoa" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="hocKy" Type="Int32" />
+    <Property Name="maChuyenNganh" Type="Int32" />
+    <NavigationProperty Name="ChuyenNganh" Relationship="Self.fk_loaiDeTai_chuyenNganh" FromRole="LoaiDeTai" ToRole="ChuyenNganh" />
+    <NavigationProperty Name="DeTais" Relationship="Self.FK_DeTai_LoaiDeTai_loaiDeTai" FromRole="LoaiDeTai" ToRole="DeTai" />
+    <NavigationProperty Name="ChuyenNganhs" Relationship="Self.LoaiDeTaiChuyenNganh" FromRole="LoaiDeTai" ToRole="ChuyenNganh" />
+  </EntityType>
+  <EntityType Name="Nhom">
+    <Key>
+      <PropertyRef Name="maNhom" />
+    </Key>
+    <Property Name="maNhom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="maNhomTruong" Type="Int32" />
+    <Property Name="soLuongSv" Type="Int32" />
+    <Property Name="maDeTai" Type="Int32" />
+    <NavigationProperty Name="DeTai" Relationship="Self.fk_nhomDeTai" FromRole="Nhom" ToRole="DeTai" />
+  </EntityType>
+  <EntityType Name="SinhVien">
+    <Key>
+      <PropertyRef Name="account_ID" />
+    </Key>
+    <Property Name="account_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MSSV" Type="Int32" Nullable="false" />
+    <Property Name="tenSinhVien" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="maChuyenNganh" Type="Int32" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.fk_accountStudent" FromRole="SinhVien" ToRole="AspNetUsers" />
+    <NavigationProperty Name="ChuyenNganh" Relationship="Self.fk_sinhVien_chuyenNganh" FromRole="SinhVien" ToRole="ChuyenNganh" />
+  </EntityType>
+  <EntityType Name="ThongBao">
+    <Key>
+      <PropertyRef Name="maThongBao" />
+    </Key>
+    <Property Name="maThongBao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tieuDe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="moTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="noiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="trangThai" Type="Byte" />
+    <Property Name="ngayTao" Type="DateTime" Precision="3" />
+    <Property Name="fileDinhKem" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_accountStudent">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SinhVien">
+        <PropertyRef Name="account_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_accountTeacher">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GiangVien">
+        <PropertyRef Name="account_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_loaiDeTai_chuyenNganh">
+    <End Role="ChuyenNganh" Type="Self.ChuyenNganh" Multiplicity="0..1" />
+    <End Role="LoaiDeTai" Type="Self.LoaiDeTai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChuyenNganh">
+        <PropertyRef Name="maChuyenNganh" />
+      </Principal>
+      <Dependent Role="LoaiDeTai">
+        <PropertyRef Name="maChuyenNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sinhVien_chuyenNganh">
+    <End Role="ChuyenNganh" Type="Self.ChuyenNganh" Multiplicity="0..1" />
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChuyenNganh">
+        <PropertyRef Name="maChuyenNganh" />
+      </Principal>
+      <Dependent Role="SinhVien">
+        <PropertyRef Name="maChuyenNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_truongBoMon">
+    <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+    <End Role="ChuyenNganh" Type="Self.ChuyenNganh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiangVien">
+        <PropertyRef Name="account_ID" />
+      </Principal>
+      <Dependent Role="ChuyenNganh">
+        <PropertyRef Name="truongBoMon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeTai_LoaiDeTai_loaiDeTai">
+    <End Role="LoaiDeTai" Type="Self.LoaiDeTai" Multiplicity="0..1" />
+    <End Role="DeTai" Type="Self.DeTai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiDeTai">
+        <PropertyRef Name="maLoaiDeTai" />
+      </Principal>
+      <Dependent Role="DeTai">
+        <PropertyRef Name="loaiDeTai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoiDongCham_DeTai">
+    <End Role="DeTai" Type="Self.DeTai" Multiplicity="0..1" />
+    <End Role="HoiDongCham" Type="Self.HoiDongCham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeTai">
+        <PropertyRef Name="maDeTai" />
+      </Principal>
+      <Dependent Role="HoiDongCham">
+        <PropertyRef Name="maDeTai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_nhomDeTai">
+    <End Role="DeTai" Type="Self.DeTai" Multiplicity="0..1" />
+    <End Role="Nhom" Type="Self.Nhom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeTai">
+        <PropertyRef Name="maDeTai" />
+      </Principal>
+      <Dependent Role="Nhom">
+        <PropertyRef Name="maDeTai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhanBien_DeTai">
+    <End Role="DeTai" Type="Self.DeTai" Multiplicity="0..1" />
+    <End Role="GiangVienPhanBien" Type="Self.GiangVienPhanBien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeTai">
+        <PropertyRef Name="maDeTai" />
+      </Principal>
+      <Dependent Role="GiangVienPhanBien">
+        <PropertyRef Name="maDeTai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <Association Name="LoaiDeTaiChuyenNganh">
+    <End Role="ChuyenNganh" Type="Self.ChuyenNganh" Multiplicity="*" />
+    <End Role="LoaiDeTai" Type="Self.LoaiDeTai" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="QuanLyDeTaiEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="ChuyenNganhs" EntityType="Self.ChuyenNganh" />
+    <EntitySet Name="DeTais" EntityType="Self.DeTai" />
+    <EntitySet Name="GiangViens" EntityType="Self.GiangVien" />
+    <EntitySet Name="GiangVienPhanBiens" EntityType="Self.GiangVienPhanBien" />
+    <EntitySet Name="HoiDongChams" EntityType="Self.HoiDongCham" />
+    <EntitySet Name="LoaiDeTais" EntityType="Self.LoaiDeTai" />
+    <EntitySet Name="Nhoms" EntityType="Self.Nhom" />
+    <EntitySet Name="SinhViens" EntityType="Self.SinhVien" />
+    <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="fk_accountStudent" Association="Self.fk_accountStudent">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="SinhVien" EntitySet="SinhViens" />
+    </AssociationSet>
+    <AssociationSet Name="fk_accountTeacher" Association="Self.fk_accountTeacher">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="GiangVien" EntitySet="GiangViens" />
+    </AssociationSet>
+    <AssociationSet Name="fk_loaiDeTai_chuyenNganh" Association="Self.fk_loaiDeTai_chuyenNganh">
+      <End Role="ChuyenNganh" EntitySet="ChuyenNganhs" />
+      <End Role="LoaiDeTai" EntitySet="LoaiDeTais" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sinhVien_chuyenNganh" Association="Self.fk_sinhVien_chuyenNganh">
+      <End Role="ChuyenNganh" EntitySet="ChuyenNganhs" />
+      <End Role="SinhVien" EntitySet="SinhViens" />
+    </AssociationSet>
+    <AssociationSet Name="fk_truongBoMon" Association="Self.fk_truongBoMon">
+      <End Role="GiangVien" EntitySet="GiangViens" />
+      <End Role="ChuyenNganh" EntitySet="ChuyenNganhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeTai_LoaiDeTai_loaiDeTai" Association="Self.FK_DeTai_LoaiDeTai_loaiDeTai">
+      <End Role="LoaiDeTai" EntitySet="LoaiDeTais" />
+      <End Role="DeTai" EntitySet="DeTais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoiDongCham_DeTai" Association="Self.FK_hoiDongCham_DeTai">
+      <End Role="DeTai" EntitySet="DeTais" />
+      <End Role="HoiDongCham" EntitySet="HoiDongChams" />
+    </AssociationSet>
+    <AssociationSet Name="fk_nhomDeTai" Association="Self.fk_nhomDeTai">
+      <End Role="DeTai" EntitySet="DeTais" />
+      <End Role="Nhom" EntitySet="Nhoms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhanBien_DeTai" Association="Self.FK_PhanBien_DeTai">
+      <End Role="DeTai" EntitySet="DeTais" />
+      <End Role="GiangVienPhanBien" EntitySet="GiangVienPhanBiens" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="LoaiDeTaiChuyenNganh" Association="Self.LoaiDeTaiChuyenNganh">
+      <End Role="ChuyenNganh" EntitySet="ChuyenNganhs" />
+      <End Role="LoaiDeTai" EntitySet="LoaiDeTais" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

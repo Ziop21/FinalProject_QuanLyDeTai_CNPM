@@ -1,0 +1,52 @@
+﻿@model IEnumerable<QuanLyDeTai.Models.LoaiDeTai>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tenLoaiDeTai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nienKhoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hocKy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChuyenNganh.tenChuyenNganh)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenLoaiDeTai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nienKhoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hocKy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChuyenNganh.tenChuyenNganh)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maLoaiDeTai }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maLoaiDeTai }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maLoaiDeTai })
+        </td>
+    </tr>
+}
+
+</table>

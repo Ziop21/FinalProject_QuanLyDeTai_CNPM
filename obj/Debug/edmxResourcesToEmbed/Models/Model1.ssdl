@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyDeTaiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChuyenNganh">
+    <Key>
+      <PropertyRef Name="maChuyenNganh" />
+    </Key>
+    <Property Name="maChuyenNganh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenChuyenNganh" Type="nvarchar" MaxLength="256" />
+    <Property Name="truongBoMon" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="DeTai">
+    <Key>
+      <PropertyRef Name="maDeTai" />
+    </Key>
+    <Property Name="maDeTai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenDeTai" Type="nvarchar" MaxLength="256" />
+    <Property Name="mucTieu" Type="nvarchar" MaxLength="256" />
+    <Property Name="yeuCau" Type="nvarchar" MaxLength="256" />
+    <Property Name="sanPham" Type="nvarchar" MaxLength="256" />
+    <Property Name="chuThich" Type="nvarchar" MaxLength="256" />
+    <Property Name="soLuongSinhVienToiDa" Type="int" />
+    <Property Name="duocDangKyKhacChuyenNganh" Type="bit" />
+    <Property Name="nienKhoa" Type="nvarchar" MaxLength="256" />
+    <Property Name="loaiDeTai" Type="int" />
+    <Property Name="diem" Type="float" />
+    <Property Name="truongNhom" Type="int" />
+    <Property Name="gvHuongDan" Type="int" />
+  </EntityType>
+  <EntityType Name="GiangVien">
+    <Key>
+      <PropertyRef Name="account_ID" />
+    </Key>
+    <Property Name="account_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="tenGiangVien" Type="nvarchar" MaxLength="256" />
+    <Property Name="loaiGiangVien" Type="nvarchar" MaxLength="256" />
+    <Property Name="maGiangVien" Type="int" />
+  </EntityType>
+  <EntityType Name="GiangVienPhanBien">
+    <Key>
+      <PropertyRef Name="maPhanBien" />
+    </Key>
+    <Property Name="maPhanBien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="maGiangVien" Type="int" />
+    <Property Name="maDeTai" Type="int" />
+  </EntityType>
+  <EntityType Name="HoiDongCham">
+    <Key>
+      <PropertyRef Name="maHoiDong" />
+    </Key>
+    <Property Name="maHoiDong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="maDeTai" Type="int" />
+    <Property Name="soLuongGV" Type="int" />
+  </EntityType>
+  <EntityType Name="LoaiDeTai">
+    <Key>
+      <PropertyRef Name="maLoaiDeTai" />
+    </Key>
+    <Property Name="maLoaiDeTai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenLoaiDeTai" Type="nvarchar" MaxLength="256" />
+    <Property Name="nienKhoa" Type="nvarchar" MaxLength="256" />
+    <Property Name="hocKy" Type="int" />
+    <Property Name="maChuyenNganh" Type="int" />
+  </EntityType>
+  <EntityType Name="LoaiDeTaiChuyenNganh">
+    <Key>
+      <PropertyRef Name="maChuyenNganh" />
+      <PropertyRef Name="maLoaiDeTai" />
+    </Key>
+    <Property Name="maChuyenNganh" Type="int" Nullable="false" />
+    <Property Name="maLoaiDeTai" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Nhom">
+    <Key>
+      <PropertyRef Name="maNhom" />
+    </Key>
+    <Property Name="maNhom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="maNhomTruong" Type="int" />
+    <Property Name="soLuongSv" Type="int" />
+    <Property Name="maDeTai" Type="int" />
+  </EntityType>
+  <EntityType Name="SinhVien">
+    <Key>
+      <PropertyRef Name="account_ID" />
+    </Key>
+    <Property Name="account_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="MSSV" Type="int" Nullable="false" />
+    <Property Name="tenSinhVien" Type="nvarchar" MaxLength="256" />
+    <Property Name="maChuyenNganh" Type="int" />
+  </EntityType>
+  <EntityType Name="ThongBao">
+    <Key>
+      <PropertyRef Name="maThongBao" />
+    </Key>
+    <Property Name="maThongBao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tieuDe" Type="nvarchar" MaxLength="255" />
+    <Property Name="moTa" Type="nvarchar" MaxLength="255" />
+    <Property Name="noiDung" Type="text" />
+    <Property Name="trangThai" Type="tinyint" />
+    <Property Name="ngayTao" Type="datetime" />
+    <Property Name="fileDinhKem" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="fk_accountStudent">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SinhVien">
+        <PropertyRef Name="account_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_accountTeacher">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GiangVien">
+        <PropertyRef Name="account_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_DeTai_GiangVien_gvHuongDan' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_DeTai_GiangVien_gvHuongDan" />-->
+  <Association Name="FK_DeTai_LoaiDeTai_loaiDeTai">
+    <End Role="LoaiDeTai" Type="Self.LoaiDeTai" Multiplicity="0..1" />
+    <End Role="DeTai" Type="Self.DeTai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiDeTai">
+        <PropertyRef Name="maLoaiDeTai" />
+      </Principal>
+      <Dependent Role="DeTai">
+        <PropertyRef Name="loaiDeTai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_DeTai_SinhVien_truongNhom' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_DeTai_SinhVien_truongNhom" />-->
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'fk_giangVienPhanBien' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="fk_giangVienPhanBien" />-->
+  <Association Name="FK_hoiDongCham_DeTai">
+    <End Role="DeTai" Type="Self.DeTai" Multiplicity="0..1" />
+    <End Role="HoiDongCham" Type="Self.HoiDongCham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeTai">
+        <PropertyRef Name="maDeTai" />
+      </Principal>
+      <Dependent Role="HoiDongCham">
+        <PropertyRef Name="maDeTai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_loaiDeTai_chuyenNganh">
+    <End Role="ChuyenNganh" Type="Self.ChuyenNganh" Multiplicity="0..1" />
+    <End Role="LoaiDeTai" Type="Self.LoaiDeTai" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChuyenNganh">
+        <PropertyRef Name="maChuyenNganh" />
+      </Principal>
+      <Dependent Role="LoaiDeTai">
+        <PropertyRef Name="maChuyenNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoaiDeTaiChuyenNganh_ChuyenNganh_maChuyenNganh">
+    <End Role="ChuyenNganh" Type="Self.ChuyenNganh" Multiplicity="1" />
+    <End Role="LoaiDeTaiChuyenNganh" Type="Self.LoaiDeTaiChuyenNganh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChuyenNganh">
+        <PropertyRef Name="maChuyenNganh" />
+      </Principal>
+      <Dependent Role="LoaiDeTaiChuyenNganh">
+        <PropertyRef Name="maChuyenNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoaiDeTaiChuyenNganh_LoaiDeTai_maLoaiDeTai">
+    <End Role="LoaiDeTai" Type="Self.LoaiDeTai" Multiplicity="1" />
+    <End Role="LoaiDeTaiChuyenNganh" Type="Self.LoaiDeTaiChuyenNganh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiDeTai">
+        <PropertyRef Name="maLoaiDeTai" />
+      </Principal>
+      <Dependent Role="LoaiDeTaiChuyenNganh">
+        <PropertyRef Name="maLoaiDeTai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Nhom_SinhVien1' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Nhom_SinhVien1" />-->
+  <Association Name="fk_nhomDeTai">
+    <End Role="DeTai" Type="Self.DeTai" Multiplicity="0..1" />
+    <End Role="Nhom" Type="Self.Nhom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeTai">
+        <PropertyRef Name="maDeTai" />
+      </Principal>
+      <Dependent Role="Nhom">
+        <PropertyRef Name="maDeTai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhanBien_DeTai">
+    <End Role="DeTai" Type="Self.DeTai" Multiplicity="0..1" />
+    <End Role="GiangVienPhanBien" Type="Self.GiangVienPhanBien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeTai">
+        <PropertyRef Name="maDeTai" />
+      </Principal>
+      <Dependent Role="GiangVienPhanBien">
+        <PropertyRef Name="maDeTai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sinhVien_chuyenNganh">
+    <End Role="ChuyenNganh" Type="Self.ChuyenNganh" Multiplicity="0..1" />
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChuyenNganh">
+        <PropertyRef Name="maChuyenNganh" />
+      </Principal>
+      <Dependent Role="SinhVien">
+        <PropertyRef Name="maChuyenNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_truongBoMon">
+    <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+    <End Role="ChuyenNganh" Type="Self.ChuyenNganh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiangVien">
+        <PropertyRef Name="account_ID" />
+      </Principal>
+      <Dependent Role="ChuyenNganh">
+        <PropertyRef Name="truongBoMon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyDeTaiModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChuyenNganh" EntityType="Self.ChuyenNganh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeTai" EntityType="Self.DeTai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GiangVien" EntityType="Self.GiangVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GiangVienPhanBien" EntityType="Self.GiangVienPhanBien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoiDongCham" EntityType="Self.HoiDongCham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiDeTai" EntityType="Self.LoaiDeTai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiDeTaiChuyenNganh" EntityType="Self.LoaiDeTaiChuyenNganh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nhom" EntityType="Self.Nhom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_accountStudent" Association="Self.fk_accountStudent">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="SinhVien" EntitySet="SinhVien" />
+    </AssociationSet>
+    <AssociationSet Name="fk_accountTeacher" Association="Self.fk_accountTeacher">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="GiangVien" EntitySet="GiangVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeTai_LoaiDeTai_loaiDeTai" Association="Self.FK_DeTai_LoaiDeTai_loaiDeTai">
+      <End Role="LoaiDeTai" EntitySet="LoaiDeTai" />
+      <End Role="DeTai" EntitySet="DeTai" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoiDongCham_DeTai" Association="Self.FK_hoiDongCham_DeTai">
+      <End Role="DeTai" EntitySet="DeTai" />
+      <End Role="HoiDongCham" EntitySet="HoiDongCham" />
+    </AssociationSet>
+    <AssociationSet Name="fk_loaiDeTai_chuyenNganh" Association="Self.fk_loaiDeTai_chuyenNganh">
+      <End Role="ChuyenNganh" EntitySet="ChuyenNganh" />
+      <End Role="LoaiDeTai" EntitySet="LoaiDeTai" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoaiDeTaiChuyenNganh_ChuyenNganh_maChuyenNganh" Association="Self.FK_LoaiDeTaiChuyenNganh_ChuyenNganh_maChuyenNganh">
+      <End Role="ChuyenNganh" EntitySet="ChuyenNganh" />
+      <End Role="LoaiDeTaiChuyenNganh" EntitySet="LoaiDeTaiChuyenNganh" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoaiDeTaiChuyenNganh_LoaiDeTai_maLoaiDeTai" Association="Self.FK_LoaiDeTaiChuyenNganh_LoaiDeTai_maLoaiDeTai">
+      <End Role="LoaiDeTai" EntitySet="LoaiDeTai" />
+      <End Role="LoaiDeTaiChuyenNganh" EntitySet="LoaiDeTaiChuyenNganh" />
+    </AssociationSet>
+    <AssociationSet Name="fk_nhomDeTai" Association="Self.fk_nhomDeTai">
+      <End Role="DeTai" EntitySet="DeTai" />
+      <End Role="Nhom" EntitySet="Nhom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhanBien_DeTai" Association="Self.FK_PhanBien_DeTai">
+      <End Role="DeTai" EntitySet="DeTai" />
+      <End Role="GiangVienPhanBien" EntitySet="GiangVienPhanBien" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sinhVien_chuyenNganh" Association="Self.fk_sinhVien_chuyenNganh">
+      <End Role="ChuyenNganh" EntitySet="ChuyenNganh" />
+      <End Role="SinhVien" EntitySet="SinhVien" />
+    </AssociationSet>
+    <AssociationSet Name="fk_truongBoMon" Association="Self.fk_truongBoMon">
+      <End Role="GiangVien" EntitySet="GiangVien" />
+      <End Role="ChuyenNganh" EntitySet="ChuyenNganh" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

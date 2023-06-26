@@ -1,0 +1,40 @@
+﻿@model IEnumerable<QuanLyDeTai.Models.HoiDongCham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.soLuongGV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeTai.tenDeTai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.soLuongGV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeTai.tenDeTai)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maHoiDong }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maHoiDong }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maHoiDong })
+        </td>
+    </tr>
+}
+
+</table>

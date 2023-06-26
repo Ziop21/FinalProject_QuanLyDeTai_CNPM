@@ -1,0 +1,51 @@
+﻿@model QuanLyDeTai.Models.LoaiDeTai
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LoaiDeTai</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenLoaiDeTai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenLoaiDeTai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nienKhoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nienKhoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hocKy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hocKy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChuyenNganh.tenChuyenNganh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuyenNganh.tenChuyenNganh)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maLoaiDeTai }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

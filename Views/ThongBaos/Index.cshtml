@@ -1,0 +1,73 @@
+﻿@model IEnumerable<QuanLyDeTai.Models.ThongBao>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tiêu đề thông báo
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>
+            Nội dung
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th>
+            File đính kèm
+        </th>
+        <th>
+            Ngày tạo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tieuDe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.moTa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noiDung)
+        </td>
+        @if (item.trangThai == 1)
+        {
+            <td>
+                Còn hiệu lực
+            </td>
+        }
+        else
+        {
+            <td>
+                Hết hiệu lực
+            </td>
+        }
+        <td>
+            <a href="~/Upload/@item.fileDinhKem">@Html.DisplayFor(modelItem => item.fileDinhKem)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngayTao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.maThongBao }) |
+            @Html.ActionLink("Details", "Details", new { id = item.maThongBao }) |
+            @Html.ActionLink("Delete", "XoaThongBao", new { id = item.maThongBao })
+        </td>
+    </tr>
+}
+
+</table>
